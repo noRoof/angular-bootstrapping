@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, UrlSegment } from '@angular/router';
+import { CanLoad, Route, UrlSegment, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AdminGuard implements CanLoad {
+  constructor(private authService: AuthService, private router: Router) {}
   /**
    * You should implement your admin guard logic here
    * @param route 
@@ -12,6 +14,11 @@ export class AdminGuard implements CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
+      if (this.authService.isAuthenticated()) {
+        return true;
+      } else {
+        this.router.navigate(['']);
+        return false;
+      }
   }
 }
