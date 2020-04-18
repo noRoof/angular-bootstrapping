@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PublicLayoutModule } from './public-layout/public-layout.module';
 import { CoreModule } from './core/core.module';
+import { SpinnerModule } from '@nrdworkspace/spinner';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    PublicLayoutModule
+    PublicLayoutModule,
+    SpinnerModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

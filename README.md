@@ -12,13 +12,13 @@ Angular Template is a boilerplate project for [Angular](https://angular.io/) app
 - Layout for private and public pages
 - Lazy loading for feature modules
 - General project structure
+- Spinner
 
 ## Next steps
 
 Next features to be added:
 
 - Login / Register
-- Spinner
 - Messages / Toaster
 - Custom Form Controls
 - Multi language

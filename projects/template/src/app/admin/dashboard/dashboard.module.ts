@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'projects/template/src/app/shared/shared.module';
 
 const routes: Routes = [
   { 

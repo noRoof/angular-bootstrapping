@@ -14,7 +14,12 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@nrdworkspace/toaster": ["projects/toaster/src/public-api.ts"],
+      "@nrdworkspace/spinner": ["projects/spinner/src/public-api.ts"],
+      "@nrdworkspace/forms": ["projects/forms/src/public-api.ts"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
