@@ -9,7 +9,8 @@
   background: rgba(255,255,255,0.9);
   z-index: 9999;
   align-items: center;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .lds-ellipsis {

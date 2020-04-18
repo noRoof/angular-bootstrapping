@@ -11,7 +11,6 @@ export class SpinnerService {
 
   public start(): void {
     this.activeCount ++;
-    console.log(this.activeCount);
     this.status.next(this.activeCount);
   }
 
