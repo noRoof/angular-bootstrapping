@@ -1,0 +1,37 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  flex: 1;
+}
+
+.small-logo {
+  width: 50px;
+}
+
+main {
+  padding: 0.5rem;
+
+  .content-container {
+    max-width: 1200px;
+    margin: auto;
+  }
+}
+
+.flex {
+  padding: 0.2rem;
+  display: flex;
+
+  h5 {
+    margin-bottom: 0;
+  }
+}
+
+.vertical-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

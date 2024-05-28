@@ -1,0 +1,16 @@
+<header>
+  <mat-toolbar color="primary" class="nav">
+    <button mat-icon-button  aria-label="Menu icon to open menu" (click)="onMenuToggle.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Angular Boilerplate Template</span>
+    <div>
+      <button mat-icon-button aria-label="Person icon to go to profile page" (click)="goToProfile()">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Logout icon to exit application" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+</header>

@@ -1,0 +1,13 @@
+<h2>Example list</h2>
+<p>Admin the example elements</p>
+
+<app-crud-handler
+  [displayedColumns]="displayedColumns"
+  [dataSource]="dataSource()"
+  (onAddClick)="openCreate()"
+  [actions]="actions"
+  (onDetailsClick)="goToDetails($event)"
+  (onEditClick)="openEdit($event)"
+  (onDelete)="deleteRole($event)"
+>
+</app-crud-handler>

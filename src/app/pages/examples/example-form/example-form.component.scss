@@ -1,0 +1,10 @@
+
+.form-content {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  mat-form-field {
+    margin-right: 1rem;
+  }
+}

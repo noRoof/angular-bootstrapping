@@ -1,0 +1,41 @@
+<button mat-fab aria-label="Icon button to create element" class="fixed-bottom-right" (click)="onAddClick.emit()">
+  <mat-icon>add</mat-icon>
+</button>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef class="hide-sm"> Description </th>
+    <td mat-cell *matCellDef="let element" class="hide-sm"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element"> 
+      @if (actions.details) {
+        <button mat-icon-button aria-label="Icon eye button to go to details" (click)="onDetailsClick.emit(element)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      }
+      @if (actions.edit) {
+        <button mat-icon-button aria-label="Icon edit button to edit element" (click)="onEditClick.emit(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      }
+      @if (actions.delete) {
+        <button mat-icon-button aria-label="Icon delete button to delete element" (click)="deleteClick(element)" [disabled]="element.isDeletable">
+          <mat-icon>delete</mat-icon>
+        </button>
+      }
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

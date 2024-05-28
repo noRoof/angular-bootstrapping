@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{data.header}}</h2>
+<mat-dialog-content>
+  <form [formGroup]="exampleForm">
+    <div class="form-content">
+      <div class="field-element">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="First Name Last Name" name="name" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="field-element">
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Some text goes here" name="description" formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="exampleForm.value" [disabled]="!exampleForm.valid">Save</button>
+</mat-dialog-actions>

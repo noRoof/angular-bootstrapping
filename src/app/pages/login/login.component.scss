@@ -1,0 +1,27 @@
+.login {
+  background-color: #2f2f6a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+mat-card {
+  max-width: 90vw;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+}

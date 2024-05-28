@@ -1,0 +1,28 @@
+<app-header (onMenuToggle)="sideNav.toggle()"></app-header>
+<mat-sidenav-container class="main-container">
+  <mat-sidenav #sideNav color="primary">
+    <div class="flex">
+      <div class="vertical-centered">
+        <img class="small-logo" src="assets/images/logo.png" alt="noRoof Development">
+      </div>
+      <div class="vertical-centered">
+        <h5>noRoof</h5>
+      </div>
+    </div>
+    <mat-nav-list>
+      @for (link of links; track link) {
+        <mat-list-item [activated]="link.isActive" (click)="menuClicked(link.url)">
+           <span>{{ link.label }}</span>
+        </mat-list-item>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<app-footer></app-footer>

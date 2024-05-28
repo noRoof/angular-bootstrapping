@@ -1,0 +1,26 @@
+<div class="login">
+  <div class="container">
+    <mat-card>
+      <mat-card-content>
+        <div class="img-container">
+          <img src="assets/images/logo.png" alt="noRoof Development">
+        </div>
+  
+        <p>Welcome to the Angular Boilerplate Template</p>
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="form-container">
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="usuario@cdalbatros.com.uy" name="email" formControlName="email">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" formControlName="password">
+          </mat-form-field>
+          <div class="actions">
+            <button type="submit" mat-flat-button color="primary" [disabled]="!loginForm.valid">Login</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
