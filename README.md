@@ -36,27 +36,51 @@ Next features to be added:
 
 ### facade
 
+To have the code cleaner we want to have responsibilities well organized. So we have a facade service which will be the only one that will be used by components and resolvers. It allows us to decouple or implementation in specific data or sources, so if they change in the future, we'll only have to make changes in the facade service and not in all the application.
+
 ### data
+
+We want to store our data so we don't need to go to the source to retrieve it every time we need it. To do that we implement the data service making use of the Signals which allow us to store that data and consume it in the application while having all their performance benefits.
 
 ### source
 
+It's the one that will get the information from the specific source in the future. By now we only store the information in memory, but in the future we can call our API, or use Firestore, Supabese or other cloud service.
+
+### spinner
+
+Spinner service to handle the spinner information, it's called to notify with the spinner needs to be shown or not.
+
 ## Guards
 
+Basic and dummy guard to check that the user is logged in before letting the user enter to private pages.
+
 ## Resolvers
+
+It's called in the app route configuration. It checks if the data is already in available, and if it's available returns it, if not, it loads needed data and returns it.
 
 ## Pages
 
 ### Dummy Login
 
+Simple example of a login which is dummy and only expects to have some information entered in the form.
+
 ### Example List
 
+List page that use the CRUD Handler component and render the data in it. It also has create and edit functionalities using a dialog.
+
 ### Example Detail
+
+Dummy detail components as an example of a detail page
 
 ## Components
 
 ### CRUD Handler
 
+Component to be used for general CRUDs, it render a table with the information provided and the actions according to the inputs. View, Edit, Delete and Edit are supported and calls the specific outputs.
+
 ### Confirm Dialog
+
+Reusable dialog component used for actions confirmation
 
 ## Development server
 
