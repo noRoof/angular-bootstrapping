@@ -1,4 +1,5 @@
-import { Component, OnInit, Signal, signal } from '@angular/core';
+import { Component, DestroyRef, OnInit, Signal, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CrudHandlerComponent } from '../../components/crud-handler/crud-handler.component';
 import { FacadeService } from '../../services/facade.service';
 import { Example } from '../../types/example';
@@ -20,7 +21,8 @@ export default class ExamplesComponent implements OnInit {
     edit: true,
     details: true,
     delete: true
-  }
+  };
+  destroyRef = inject(DestroyRef);
 
   constructor(
     private facadeService: FacadeService,
@@ -38,10 +40,8 @@ export default class ExamplesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       if (result) {
-        console.log(result)
-        this.facadeService.createExample(result).subscribe(()=> {})
+        this.facadeService.createExample(result).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(()=> {})
       }
     });
   }
@@ -56,15 +56,13 @@ export default class ExamplesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       if (result) {
-        console.log(result)
-        this.facadeService.updateExample({id: example.id, ...result}).subscribe(()=> {})
+        this.facadeService.updateExample({id: example.id, ...result}).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(()=> {})
       }
     });
   }
 
   deleteRole(example: Example){
-    this.facadeService.deleteExample(example.id).subscribe(()=> {})
+    this.facadeService.deleteExample(example.id).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(()=> {})
   }
 }

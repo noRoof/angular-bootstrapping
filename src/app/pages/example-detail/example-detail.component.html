@@ -1,1 +1,44 @@
-<p>example-detail works!</p>
+<h2>{{exampleData()?.name}}</h2>
+<dl>
+  <dt>Description</dt>
+  <dd>{{exampleData()?.description}}</dd>
+  @for (data of exampleData()?.otherData; track data) {
+    <dt>{{data?.key}}</dt>
+    <dd>{{data?.value}}</dd>
+  }
+</dl>
+<p></p>
+<form [formGroup]="form" (submit)="onSubmit()">
+  <section formArrayName="moreData">
+    <h3>
+      Add more details
+    </h3>
+    <p>You can add more details to the example here.</p>
+    <button mat-raised-button type="button" (click)="addMoreData()">Add more</button>
+    <p>Example:</p>
+    <mat-form-field>
+      <mat-label>Info's name</mat-label>
+      <input matInput value="Phone" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Info's value</mat-label>
+      <input matInput value="099123456" disabled>
+    </mat-form-field>
+    @for (data of moreData.controls; track data; let i = $index) {
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <mat-label>Info's name</mat-label>
+          <input matInput formControlName="key">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Info's value</mat-label>
+          <input matInput formControlName="value">
+        </mat-form-field>
+        <button mat-icon-button type="button" aria-label="Example icon button with a bucket icon" (click)="removeMoreData(i)"><mat-icon>delete</mat-icon></button>
+      </div>
+    }
+  </section>
+  <section>
+    <button mat-flat-button type="submit" color="primary" [disabled]="!form.valid" cdkFocusInitial>Save</button>
+  </section>
+</form>

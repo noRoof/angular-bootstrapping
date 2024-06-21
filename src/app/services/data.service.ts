@@ -1,7 +1,7 @@
 import { Injectable, WritableSignal, computed, signal } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar'
 import { EntityCollection } from '../types/entity';
-import { Example, ExampleDetails } from '../types/example';
+import { Example, ExampleDetails, MoreData } from '../types/example';
 
 @Injectable({
   providedIn: 'root'
@@ -73,7 +73,7 @@ export class DataService {
     })
   }
 
-  updateExample(example: ExampleDetails) {
+  updateExample(example: Example) {
     // Updates info on list
     this.examples.update(value => {
       const index = value.findIndex(p => p.id === example.id)
@@ -102,6 +102,26 @@ export class DataService {
         }
       } else {
         return value;
+      }
+    })
+  }
+
+  addDataToExample = (options: {exampleId: number, moreData: MoreData[]}) => {
+    this.examplesWithDetails.update(value => {
+      let ids = [...value.ids];
+      const entities = {
+        ...value.entities
+      }
+      const exampleDetails = {
+        ...entities[options.exampleId],
+        otherData: [...entities[options.exampleId].otherData,
+          ...options.moreData,
+        ]
+      }
+      entities[options.exampleId] = exampleDetails;
+      return {
+        ids,
+        entities
       }
     })
   }

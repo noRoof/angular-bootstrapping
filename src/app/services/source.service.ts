@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, delay, of } from 'rxjs';
-import { Example, ExampleBody, ExampleDetails } from '../types/example';
+import { Example, ExampleBody, ExampleDetails, MoreData } from '../types/example';
 
 /**
  * Service to implement the request to get the information from the used source
@@ -11,15 +11,17 @@ import { Example, ExampleBody, ExampleDetails } from '../types/example';
 })
 export class SourceService {
 
-  mockExamplesData = [{
+  mockExamplesData: ExampleDetails[] = [{
     id: 1,
     name: 'One',
     description: 'This is the first example',
+    otherData: []
   }, {
     id: 2,
     name: 'Two',
     description: 'This is the second example',
-  }]
+    otherData: []
+  }];
 
   constructor() { }
 
@@ -32,7 +34,6 @@ export class SourceService {
     if (example) {
       return of({
         ...example,
-        otherData: 'More information here'
       }).pipe(delay(500));
     } else {
       return of(undefined);;
@@ -63,12 +64,27 @@ export class SourceService {
       ...this.mockExamplesData,
       {
         ...example,
-        id: this.mockExamplesData.length + 1
+        id: this.mockExamplesData.length + 1,
+        otherData: []
       }
     ];
     return of({
       ...example,
       id: this.mockExamplesData.length
     }).pipe(delay(500));
+  }
+
+  addDataToExample = (options: {exampleId: number, moreData: MoreData[]}): Observable<ExampleDetails | undefined> => {
+    const {exampleId, moreData} = options;
+    const currentExample = this.mockExamplesData.find(p => p.id === exampleId)
+    if (currentExample) {
+      currentExample.otherData = [...currentExample.otherData, ...moreData];
+      this.mockExamplesData = [...this.mockExamplesData];
+      return of({
+        ...currentExample,
+      }).pipe(delay(500))
+    } else {
+      return of(undefined);
+    }
   }
 }

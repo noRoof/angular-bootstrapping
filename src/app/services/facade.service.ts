@@ -4,7 +4,7 @@ import { catchError, of, tap } from 'rxjs';
 import { SourceService } from './source.service';
 import { DataService } from './data.service';
 import { SpinnerService } from './spinner.service';
-import { Example, ExampleBody, ExampleDetails } from '../types/example';
+import { Example, ExampleBody, ExampleDetails, MoreData } from '../types/example';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class FacadeService {
     this.spinnerService.start();
     return this.sourceService.getExamples()
       .pipe(catchError((error) => {
-        this.snackBar.open('Ocurrió un error', undefined, {duration: 2000})
+        this.snackBar.open('Error happened', undefined, {duration: 2000})
         return of([]);
       }))
       .pipe(tap(examples => {
@@ -43,7 +43,7 @@ export class FacadeService {
     this.spinnerService.start();
     return this.sourceService.getExampleDetails(id)
     .pipe(catchError((error) => {
-      this.snackBar.open('Ocurrió un error', undefined, {duration: 2000})
+      this.snackBar.open('Error happened', undefined, {duration: 2000})
       return of(undefined);
     }))
     .pipe(tap(example => {
@@ -58,7 +58,7 @@ export class FacadeService {
     this.spinnerService.start();
     return this.sourceService.deleteExample(id)
     .pipe(catchError((error) => {
-      this.snackBar.open('Ocurrió un error', undefined, {duration: 2000})
+      this.snackBar.open('Error happened', undefined, {duration: 2000})
       return of('error');
     }))
     .pipe(tap(error => {
@@ -73,7 +73,7 @@ export class FacadeService {
     this.spinnerService.start();
     return this.sourceService.updateExample(example)
     .pipe(catchError((error) => {
-      this.snackBar.open('Ocurrió un error', undefined, {duration: 2000})
+      this.snackBar.open('Error happened', undefined, {duration: 2000})
       return of(undefined);
     }))
     .pipe(tap((example: undefined | Example) => {
@@ -88,13 +88,28 @@ export class FacadeService {
     this.spinnerService.start();
     return this.sourceService.createExample(example)
     .pipe(catchError((error) => {
-      this.snackBar.open('Ocurrió un error', undefined, {duration: 2000})
+      this.snackBar.open('Error happened', undefined, {duration: 2000})
       return of(undefined);
     }))
     .pipe(tap(example => {
       this.spinnerService.stop();
       if (example) {
         this.dataService.insertExample(example);
+      }
+    }));
+  }
+
+  addDataToExample = (options: {exampleId: number, moreData: MoreData[]}) => {
+    this.spinnerService.start();
+    return this.sourceService.addDataToExample(options)
+    .pipe(catchError(() => {
+      this.snackBar.open('Error happened', undefined, {duration: 2000})
+      return of(undefined);
+    }))
+    .pipe(tap((example: undefined | ExampleDetails) => {
+      this.spinnerService.stop();
+      if (example) {
+        this.dataService.addDataToExample(options);
       }
     }));
   }

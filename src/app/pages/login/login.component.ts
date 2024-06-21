@@ -32,7 +32,6 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       localStorage.setItem('user', this.loginForm.value.email as string)
-      console.log(this.loginForm)
       this.router.navigate(['/']);
     }
   }
