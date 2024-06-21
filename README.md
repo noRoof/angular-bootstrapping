@@ -29,6 +29,7 @@ Angular Template is a boilerplate project for [Angular](https://angular.dev/) ap
 Next features to be added:
 
 - Custom Form Controls
+- Add unit test
 - Forms feedback examples on validation
 - Multi language
 
@@ -70,7 +71,7 @@ List page that use the CRUD Handler component and render the data in it. It also
 
 ### Example Detail
 
-Dummy detail components as an example of a detail page
+Dummy detail components as an example of a detail page showing how to use a form group and form array.
 
 ## Components
 
@@ -111,3 +112,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 - Website - [https://noroof.dev](https://noroof.dev/)
 - Twitter - [@noroofdev](https://twitter.com/noroofdev)
+- Linkedin - [@noroof-development](https://www.linkedin.com/company/noroof-development)
